@@ -372,7 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
   collectionName: 'blog_posts';
   info: {
-    description: 'Create and manage blog posts for the law firm website';
+    description: 'Create and manage blog posts';
     displayName: 'Blog Post';
     pluralName: 'blog-posts';
     singularName: 'blog-post';
@@ -381,10 +381,7 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    author: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::staff-member.staff-member'
-    >;
+    author: Schema.Attribute.Relation<'manyToOne', 'api::person.person'>;
     categories: Schema.Attribute.Relation<
       'manyToMany',
       'api::category.category'
@@ -465,59 +462,6 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiConsulttationRequestConsultationRequest
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'consultation_requests';
-  info: {
-    description: 'Store and manage consultation requests';
-    displayName: 'Consultation Request';
-    pluralName: 'consultation-requests';
-    singularName: 'consultation-request';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    attorneyAssigned: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::staff-member.staff-member'
-    >;
-    clientConvertedToCase: Schema.Attribute.Boolean &
-      Schema.Attribute.DefaultTo<false>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text & Schema.Attribute.Required;
-    email: Schema.Attribute.Email & Schema.Attribute.Required;
-    firstName: Schema.Attribute.String & Schema.Attribute.Required;
-    followUpDate: Schema.Attribute.Date;
-    ipAddress: Schema.Attribute.String;
-    lastName: Schema.Attribute.String & Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::consulttation-request.consultation-request'
-    > &
-      Schema.Attribute.Private;
-    notes: Schema.Attribute.RichText;
-    phone: Schema.Attribute.String & Schema.Attribute.Required;
-    practiceArea: Schema.Attribute.String & Schema.Attribute.Required;
-    preferredDate: Schema.Attribute.Date & Schema.Attribute.Required;
-    preferredTime: Schema.Attribute.String & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    referrer: Schema.Attribute.String;
-    scheduledTime: Schema.Attribute.DateTime;
-    status: Schema.Attribute.Enumeration<
-      ['new', 'scheduled', 'completed', 'cancelled', 'no-show']
-    > &
-      Schema.Attribute.DefaultTo<'new'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    userAgent: Schema.Attribute.Text;
-  };
-}
-
 export interface ApiContactContact extends Struct.CollectionTypeSchema {
   collectionName: 'contacts';
   info: {
@@ -530,10 +474,6 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    assignedTo: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::staff-member.staff-member'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -617,63 +557,13 @@ export interface ApiHeroSlideHeroSlide extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiPracticeAreaPracticeArea
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'practice_areas';
+export interface ApiPersonPerson extends Struct.CollectionTypeSchema {
+  collectionName: 'people';
   info: {
-    description: 'Create and manage practice areas highlighted on the homepage';
-    displayName: 'Practice Area';
-    pluralName: 'practice-areas';
-    singularName: 'practice-area';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 250;
-      }>;
-    icon: Schema.Attribute.String & Schema.Attribute.Required;
-    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-    link: Schema.Attribute.String & Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::practice-area.practice-area'
-    > &
-      Schema.Attribute.Private;
-    order: Schema.Attribute.Integer &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 1;
-        },
-        number
-      > &
-      Schema.Attribute.DefaultTo<1>;
-    publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 100;
-      }>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiStaffMemberStaffMember extends Struct.CollectionTypeSchema {
-  collectionName: 'staff_members';
-  info: {
-    description: 'Manage law firm staff profiles';
-    displayName: 'Staff Member';
-    pluralName: 'staff-members';
-    singularName: 'staff-member';
+    description: 'Manage people profiles for resume and authorship';
+    displayName: 'Person';
+    pluralName: 'people';
+    singularName: 'person';
   };
   options: {
     draftAndPublish: true;
@@ -688,23 +578,119 @@ export interface ApiStaffMemberStaffMember extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    education: Schema.Attribute.Component<'staff.education', true>;
+    education: Schema.Attribute.Component<'resume.education', true>;
     email: Schema.Attribute.Email;
-    experience: Schema.Attribute.Component<'staff.experience', true>;
+    experience: Schema.Attribute.Component<'resume.experience', true>;
     featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::staff-member.staff-member'
+      'api::person.person'
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<999>;
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    skills: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
-    socialMedia: Schema.Attribute.Component<'staff.social-media', false>;
-    specialties: Schema.Attribute.Text;
+    socialMedia: Schema.Attribute.Component<'resume.social-media', false>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProjectTypeProjectType extends Struct.CollectionTypeSchema {
+  collectionName: 'project_types';
+  info: {
+    description: 'Types of projects in portfolio';
+    displayName: 'Project Type';
+    pluralName: 'project-types';
+    singularName: 'project-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 250;
+      }>;
+    icon: Schema.Attribute.String;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-type.project-type'
+    > &
+      Schema.Attribute.Private;
+    order: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<1>;
+    projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProjectProject extends Struct.CollectionTypeSchema {
+  collectionName: 'projects';
+  info: {
+    description: 'Portfolio projects';
+    displayName: 'Project';
+    pluralName: 'projects';
+    singularName: 'project';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    completedDate: Schema.Attribute.Date;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.RichText & Schema.Attribute.Required;
+    featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    featuredImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    images: Schema.Attribute.Media<'images', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project.project'
+    > &
+      Schema.Attribute.Private;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<1>;
+    projectType: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::project-type.project-type'
+    >;
+    projectUrl: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'seo.seo-metadata', false>;
+    shortDescription: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 250;
+      }>;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    technologies: Schema.Attribute.Component<'project.technology', true>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1223,11 +1209,11 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::category.category': ApiCategoryCategory;
-      'api::consulttation-request.consultation-request': ApiConsulttationRequestConsultationRequest;
       'api::contact.contact': ApiContactContact;
       'api::hero-slide.hero-slide': ApiHeroSlideHeroSlide;
-      'api::practice-area.practice-area': ApiPracticeAreaPracticeArea;
-      'api::staff-member.staff-member': ApiStaffMemberStaffMember;
+      'api::person.person': ApiPersonPerson;
+      'api::project-type.project-type': ApiProjectTypeProjectType;
+      'api::project.project': ApiProjectProject;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
