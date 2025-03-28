@@ -1,8 +1,8 @@
-# BWL Backend Project
+# SEO Strapi v5
 
 ## Project Overview
 
-This is a Strapi-powered backend project developed by Terry Hunt, designed to provide a robust content management system with flexible schema definitions for various content types.
+This is a Strapi-powered backend project, designed to provide a robust content management system with flexible schema definitions for various content types.
 
 ## Content Type Schemas
 
