@@ -1,63 +1,146 @@
-# 🚀 Getting started with Strapi
+# BWL Backend Project
 
-Testing
+## Project Overview
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+This is a Strapi-powered backend project developed by Terry Hunt, designed to provide a robust content management system with flexible schema definitions for various content types.
 
-### `develop`
+## Content Type Schemas
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+### 1. Blog Post (`blog-post`)
 
-```
-npm run develop
-# or
-yarn develop
-```
+Manages blog content with comprehensive SEO and authorship features.
 
-### `start`
+- **Key Attributes**:
+  - Title (unique, max 150 characters)
+  - Slug (auto-generated from title)
+  - Excerpt (max 300 characters)
+  - Rich text content
+  - Featured image
+  - Categories (many-to-many relationship)
+  - Author (many-to-one relationship with Person)
+  - Reading time estimation
+  - SEO metadata component
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+### 2. Category (`category`)
 
-```
-npm run start
-# or
-yarn start
-```
+Organizes blog posts into categorizable groups.
 
-### `build`
+- **Key Attributes**:
+  - Name (unique)
+  - Slug (auto-generated from name)
+  - Description
+  - Many-to-many relationship with Blog Posts
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+### 3. Contact Form (`contact`)
 
-```
-npm run build
-# or
-yarn build
-```
+Captures and manages website contact form submissions.
 
-## ⚙️ Deployment
+- **Key Attributes**:
+  - First and Last Name
+  - Email
+  - Phone (optional)
+  - Message
+  - Submission status (new, in-progress, completed, archived)
+  - Additional metadata like IP address and user agent
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+### 4. Hero Slide (`hero-slide`)
 
-```
-yarn strapi deploy
-```
+Manages carousel slides for the homepage.
 
-## 📚 Learn more
+- **Key Attributes**:
+  - Title (max 100 characters)
+  - Description (max 300 characters)
+  - Image
+  - Call-to-Action (CTA) text and link
+  - Display order
+  - Active status
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+### 5. Person (`person`)
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+Manages profiles for authors, team members, or resume entries.
 
-## ✨ Community
+- **Key Attributes**:
+  - Name and title
+  - Slug
+  - Avatar
+  - Bio
+  - Contact information
+  - Skills
+  - Education (repeatable component)
+  - Work experience (repeatable component)
+  - Social media links
+  - Blog post authorship
+  - Featured status
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+### 6. Project Type (`project-type`)
 
----
+Categorizes portfolio projects.
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+- **Key Attributes**:
+  - Title (max 100 characters)
+  - Description
+  - Icon or emoji
+  - Display order
+  - Active status
+  - Relationship with Projects
+
+### 7. Project (`project`)
+
+Showcases portfolio projects with detailed information.
+
+- **Key Attributes**:
+  - Title
+  - Slug
+  - Description
+  - Short description
+  - Project type
+  - Featured image
+  - Additional images
+  - Project URL
+  - Technologies used (repeatable component)
+  - Completion date
+  - Featured status
+  - SEO metadata
+
+## Components
+
+### Resume Components
+
+- **Education**: Degree, institution, year, description
+- **Experience**: Position, company, dates, description
+- **Social Media**: Links to various platforms
+
+### SEO Components
+
+- **SEO Metadata**: Title, description, keywords, robots settings, Open Graph details
+- **Page Speed**: Optimization settings for web performance
+- **Social Sharing**: Auto-posting and sharing configurations
+
+## Configuration Files
+
+- `.env.example`: Environment configuration template
+- `config/`: Contains server, database, and middleware configurations
+- `tsconfig.json`: TypeScript configuration
+
+## Development
+
+### Prerequisites
+
+- Node.js (18.0.0 - 22.x.x)
+- npm (6.0.0+)
+
+### Setup
+
+1. Copy `.env.example` to `.env`
+2. Update environment variables
+3. Install dependencies: `npm install`
+4. Run development server: `npm run develop`
+
+### Deployment
+
+- Build: `npm run build`
+- Start: `npm run start`
+
+## Contributing
+
+Please follow best practices for content modeling and ensure comprehensive documentation.
