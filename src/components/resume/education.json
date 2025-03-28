@@ -1,8 +1,8 @@
 {
-  "collectionName": "components_staff_education",
+  "collectionName": "components_resume_education",
   "info": {
     "displayName": "Education",
-    "description": "Educational background for staff members"
+    "description": "Educational background"
   },
   "options": {},
   "attributes": {

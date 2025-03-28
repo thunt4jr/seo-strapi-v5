@@ -5,7 +5,7 @@
     "singularName": "blog-post",
     "pluralName": "blog-posts",
     "displayName": "Blog Post",
-    "description": "Create and manage blog posts for the law firm website"
+    "description": "Create and manage blog posts"
   },
   "options": {
     "draftAndPublish": true
@@ -47,7 +47,7 @@
     "author": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::staff-member.staff-member",
+      "target": "api::person.person",
       "inversedBy": "blog_posts"
     },
     "readingTime": {

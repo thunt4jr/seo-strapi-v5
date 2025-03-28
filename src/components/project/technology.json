@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_project_technology",
+  "info": {
+    "displayName": "Technology",
+    "description": "Technology used in projects"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon or emoji representing the technology"
+    },
+    "version": {
+      "type": "string"
+    }
+  }
+}

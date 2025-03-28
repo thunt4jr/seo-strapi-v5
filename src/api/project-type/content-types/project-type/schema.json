@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_types",
+  "info": {
+    "singularName": "project-type",
+    "pluralName": "project-types",
+    "displayName": "Project Type",
+    "description": "Types of projects in portfolio"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 250
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji or icon code for the project type"
+    },
+    "order": {
+      "type": "integer",
+      "default": 1,
+      "min": 1,
+      "description": "Display order of the project type"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project",
+      "mappedBy": "projectType"
+    }
+  }
+}

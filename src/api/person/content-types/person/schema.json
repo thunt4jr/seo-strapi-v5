@@ -1,11 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "staff_members",
+  "collectionName": "people",
   "info": {
-    "singularName": "staff-member",
-    "pluralName": "staff-members",
-    "displayName": "Staff Member",
-    "description": "Manage law firm staff profiles"
+    "singularName": "person",
+    "pluralName": "people",
+    "displayName": "Person",
+    "description": "Manage people profiles for resume and authorship"
   },
   "options": {
     "draftAndPublish": true
@@ -40,23 +40,24 @@
     "phone": {
       "type": "string"
     },
-    "specialties": {
-      "type": "text"
+    "skills": {
+      "type": "text",
+      "description": "List of skills, one per line or comma-separated"
     },
     "education": {
       "type": "component",
       "repeatable": true,
-      "component": "staff.education"
+      "component": "resume.education"
     },
     "experience": {
       "type": "component",
       "repeatable": true,
-      "component": "staff.experience"
+      "component": "resume.experience"
     },
     "socialMedia": {
       "type": "component",
       "repeatable": false,
-      "component": "staff.social-media"
+      "component": "resume.social-media"
     },
     "blog_posts": {
       "type": "relation",

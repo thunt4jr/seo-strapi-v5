@@ -1,8 +1,8 @@
 {
-  "collectionName": "components_staff_experience",
+  "collectionName": "components_resume_experience",
   "info": {
     "displayName": "Experience",
-    "description": "Work experience for staff members"
+    "description": "Work experience"
   },
   "options": {},
   "attributes": {

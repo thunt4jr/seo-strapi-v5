@@ -39,11 +39,6 @@
     "notes": {
       "type": "richtext"
     },
-    "assignedTo": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::staff-member.staff-member"
-    },
     "ipAddress": {
       "type": "string"
     },

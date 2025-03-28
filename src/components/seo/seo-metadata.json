@@ -2,7 +2,7 @@
   "collectionName": "components_seo_seo_metadata",
   "info": {
     "displayName": "SEO Metadata",
-    "description": "Comprehensive SEO metadata for content"
+    "description": "Basic SEO metadata for content"
   },
   "options": {},
   "attributes": {
@@ -19,10 +19,6 @@
     "metaKeywords": {
       "type": "text"
     },
-    "focusKeyword": {
-      "type": "string",
-      "description": "Primary keyword to focus on for this content"
-    },
     "metaRobots": {
       "type": "enumeration",
       "enum": [
@@ -34,24 +30,10 @@
       "default": "index, follow",
       "required": true
     },
-    "advancedRobots": {
-      "type": "string",
-      "description": "Additional robots directives (e.g., noarchive, nosnippet, max-image-preview:large)"
-    },
     "canonicalURL": {
       "type": "string",
       "description": "Set canonical URL if this content should point to another URL"
     },
-    "metaViewport": {
-      "type": "string",
-      "default": "width=device-width, initial-scale=1"
-    },
-
-    "structuredData": {
-      "type": "json",
-      "description": "JSON-LD structured data for rich snippets (Schema.org)"
-    },
-
     "ogTitle": {
       "type": "string",
       "maxLength": 70,
@@ -68,83 +50,6 @@
       "required": false,
       "allowedTypes": ["images"],
       "description": "Image for social media sharing (recommended: 1200×630 pixels)"
-    },
-    "ogType": {
-      "type": "enumeration",
-      "enum": ["website", "article", "profile", "book", "business.business"],
-      "default": "website"
-    },
-    "ogLocale": {
-      "type": "string",
-      "default": "en_US",
-      "description": "Content language for Open Graph"
-    },
-
-    "twitterCard": {
-      "type": "enumeration",
-      "enum": ["summary", "summary_large_image", "app", "player"],
-      "default": "summary_large_image"
-    },
-    "twitterImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"],
-      "description": "Specific Twitter image (leave blank to use OG image)"
-    },
-    "twitterSite": {
-      "type": "string",
-      "description": "Twitter username for the website (e.g., @yourfirm)"
-    },
-    "twitterCreator": {
-      "type": "string",
-      "description": "Twitter username for the content creator (e.g., @attorney)"
-    },
-
-    "preventIndexing": {
-      "type": "boolean",
-      "default": false,
-      "description": "Check to completely prevent indexing (adds noindex, nofollow, noarchive, nosnippet)"
-    },
-    "excludeFromSitemap": {
-      "type": "boolean",
-      "default": false,
-      "description": "Check to exclude this page from the sitemap"
-    },
-
-    "articlePublishDate": {
-      "type": "datetime",
-      "description": "Publication date for article schema"
-    },
-    "articleModifiedDate": {
-      "type": "datetime",
-      "description": "Last modified date for article schema"
-    },
-
-    "googleBusinessProfile": {
-      "type": "component",
-      "repeatable": false,
-      "component": "seo.google-business",
-      "description": "Google Business Profile integration"
-    },
-
-    "socialMediaSharing": {
-      "type": "component",
-      "repeatable": false,
-      "component": "seo.social-sharing",
-      "description": "Social media sharing settings"
-    },
-
-    "aiOptimization": {
-      "type": "component",
-      "repeatable": false,
-      "component": "seo.ai-seo-optimization",
-      "description": "AI-powered SEO optimization settings"
-    },
-
-    "schemaMarkup": {
-      "type": "text",
-      "description": "Advanced custom schema.org JSON-LD markup (use with caution)"
     }
   }
 }

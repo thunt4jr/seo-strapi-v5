@@ -1,8 +1,8 @@
 {
-  "collectionName": "components_staff_social_media",
+  "collectionName": "components_resume_social_media",
   "info": {
     "displayName": "Social Media",
-    "description": "Social media profiles for staff members"
+    "description": "Social media profiles"
   },
   "options": {},
   "attributes": {
@@ -18,10 +18,13 @@
     "instagram": {
       "type": "string"
     },
-    "avvo": {
+    "github": {
       "type": "string"
     },
-    "justia": {
+    "dribbble": {
+      "type": "string"
+    },
+    "behance": {
       "type": "string"
     }
   }
